@@ -1,0 +1,162 @@
+[gd_scene load_steps=17 format=3 uid="uid://qkusafetqymk"]
+
+[ext_resource type="Texture2D" uid="uid://b1vlcfa0nxu7j" path="res://Спрайты/босс.png" id="1_icib5"]
+[ext_resource type="Texture2D" uid="uid://bbk6iym8amymb" path="res://Спрайты/ч2.png" id="2_osyqw"]
+[ext_resource type="Script" path="res://Сцены/босс.gd" id="2_x5t67"]
+[ext_resource type="Texture2D" uid="uid://c6ty3r2m825om" path="res://Спрайты/ч3.png" id="3_e87po"]
+[ext_resource type="Texture2D" uid="uid://752glrwneade" path="res://Спрайты/ч4.png" id="4_em1ot"]
+[ext_resource type="Texture2D" uid="uid://jnmkcuho23xs" path="res://Спрайты/ч5.png" id="5_bwrni"]
+[ext_resource type="Texture2D" uid="uid://c68pgre10k0so" path="res://Спрайты/ч6.png" id="6_87i3x"]
+[ext_resource type="Texture2D" uid="uid://bsoli4tsq3283" path="res://Спрайты/ч7.png" id="7_pd5yk"]
+[ext_resource type="Texture2D" uid="uid://cq4dpgo5bju6g" path="res://Спрайты/ч8.png" id="8_o76s4"]
+[ext_resource type="Script" path="res://Сцены/Timer.gd" id="9_vji53"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ce2y0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_osyqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e87po")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_em1ot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bwrni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_87i3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pd5yk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_o76s4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8coge"]
+bg_color = Color(0.247059, 0.247059, 0.247059, 0.588235)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="Animation" id="Animation_ukjs1"]
+resource_name = "animation_text_boss1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_gaydo"]
+length = 0.526
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7oaq8"]
+_data = {
+"RESET": SubResource("Animation_gaydo"),
+"animation_text_boss1": SubResource("Animation_ukjs1")
+}
+
+[sub_resource type="GDScript" id="GDScript_h0oj4"]
+script/source = "extends Button
+
+"
+
+[node name="Босс" type="Sprite2D"]
+modulate = Color(0.8, 0.8, 0.8, 1)
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_icib5")
+script = ExtResource("2_x5t67")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2.77771, -2.5)
+scale = Vector2(6.02778, 6.02778)
+sprite_frames = SubResource("SpriteFrames_ce2y0")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.052
+one_shot = true
+autostart = true
+script = ExtResource("9_vji53")
+
+[node name="Button" type="Button" parent="Timer"]
+visible = false
+offset_top = 462.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_8coge")
+
+[node name="Label" type="Label" parent="Timer/Button"]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1152.0
+offset_bottom = 188.0
+theme_override_font_sizes/font_size = 46
+text = "dfndndndfndfndfndndndf
+dfndndndfndfndfndndndfndfn"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Timer/Button"]
+root_node = NodePath("../Label")
+libraries = {
+"": SubResource("AnimationLibrary_7oaq8")
+}
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+offset_left = -960.0
+offset_top = 230.0
+offset_right = 960.0
+offset_bottom = 543.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_8coge")
+script = SubResource("GDScript_h0oj4")
+
+[node name="Label" type="Label" parent="Button2"]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1920.0
+offset_bottom = 313.0
+theme_override_font_sizes/font_size = 46
+text = "35465768765435687976534"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Button2"]
+root_node = NodePath("../Label")
+libraries = {
+"": SubResource("AnimationLibrary_7oaq8")
+}
+
+[connection signal="ready" from="Timer" to="Timer" method="_on_ready"]
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
+[connection signal="pressed" from="Timer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Timer/Button" to="Timer" method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button2" to="Timer" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button2" to="Timer" method="_on_button_pressed"]
