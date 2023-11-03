@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2427gry6n1tc"]
+[gd_scene load_steps=18 format=3 uid="uid://d2427gry6n1tc"]
 
 [ext_resource type="Texture2D" uid="uid://c5vkw0not82mq" path="res://Спрайты/aliquid-artist-Pixel-Art-6552132.jpeg" id="1_co66n"]
 [ext_resource type="Script" path="res://Сцены/aliquid_artist_pixel_art_6552132.gd" id="2_25cct"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c8h1kqtwhvtw1" path="res://Спрайты/заставка2.png" id="5_kfv7b"]
 [ext_resource type="Texture2D" uid="uid://bhbufw6b0h1kc" path="res://Спрайты/заставка3.png" id="6_ti40p"]
 [ext_resource type="Texture2D" uid="uid://d133pdlw3owuy" path="res://Спрайты/заставка4.png" id="7_d07k5"]
+[ext_resource type="Texture2D" uid="uid://b1vlcfa0nxu7j" path="res://Спрайты/босс.png" id="8_vve63"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i3tta"]
 animations = [{
@@ -124,7 +125,6 @@ script = ExtResource("2_25cct")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(18.6118, -1708.58)
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_i3tta")
 autoplay = "default"
 frame_progress = 0.587264
@@ -158,6 +158,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_6526c")
 theme_override_styles/focus = SubResource("StyleBoxFlat_2frpa")
 text = "Выйти"
 icon_alignment = 1
+
+[node name="Босс" type="Sprite2D" parent="."]
+position = Vector2(2575.81, -1230.28)
+texture = ExtResource("8_vve63")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
