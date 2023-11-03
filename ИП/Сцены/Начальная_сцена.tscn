@@ -160,7 +160,11 @@ text = "Выйти"
 icon_alignment = 1
 
 [node name="Босс" type="Sprite2D" parent="."]
-position = Vector2(2575.81, -1230.28)
+position = Vector2(2675.87, -2108.36)
+texture = ExtResource("8_vve63")
+
+[node name="Босс2" type="Sprite2D" parent="."]
+position = Vector2(2689.22, -254.622)
 texture = ExtResource("8_vve63")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
